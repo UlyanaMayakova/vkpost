@@ -1,5 +1,5 @@
 val firstPost = Post(
-    id = 1,
+    id = 0,
     ownerId = 123,
     fromId = 321,
     date = 1611307716,
@@ -17,7 +17,33 @@ val firstPost = Post(
     donut = Donut(isDonut = true, paidDuration = 1234567890, editMode = EditMode.DURATION)
 )
 
+val secondPost = Post(
+    id = 0,
+    ownerId = 123456,
+    fromId = 654321,
+    date = 16113077165689,
+    text = "Это вторая запись",
+    comments = Comments(count = 3, canClose = true, canOpen = false),
+    copyright = Copyright(id = 18234, "link23.com", "Another Group", "superPost"),
+    likes = Likes(count = 45, userLike = true, canLike = false),
+    reposts = Reposts(count = 18),
+    views = Views(count = 1111),
+    postType = PostType.REPLY,
+    canPin = true,
+    canDelete = false,
+    canEdit = true,
+    isFavourite = true,
+    donut = Donut(isDonut = false)
+)
+val thirdPost = firstPost.copy(id = 4)
+
 fun main() {
     WallService.add(firstPost)
-    print(firstPost)
+    println(firstPost)
+
+    var result = WallService.update(secondPost)
+    println(result)
+
+    result = WallService.update(thirdPost)
+    println(result)
 }
