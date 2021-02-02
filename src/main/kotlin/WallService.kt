@@ -2,22 +2,20 @@ object WallService {
     private var posts = emptyArray<Post>()
 
     fun add(post: Post): Post {
-        posts += post
+        val newId = if(posts.isEmpty()) 0 else posts.last().id
+        posts += post.copy(id = newId)
         post.id = posts.indexOf(post)
         return posts.last()
     }
 
     fun update(post: Post): Boolean {
-        val postId = post.id
-        try {
-            if (post.id == posts[postId].id) {
-                val previousPost = posts[postId]
-                val newPost = post.copy(ownerId = previousPost.ownerId, date = previousPost.date)
-                posts[postId] = newPost
+        for ((index, thisPost) in posts.withIndex()) {
+            if(thisPost.id == post.id) {
+                val thisDate = thisPost.date
+                val thisOwnerId = thisPost.ownerId
+                posts[index] = post.copy(ownerId = thisOwnerId, date = thisDate)
                 return true
             }
-        } catch (e: ArrayIndexOutOfBoundsException) {
-
         }
         return false
     }
