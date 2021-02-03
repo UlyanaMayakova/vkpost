@@ -38,12 +38,13 @@ val secondPost = Post(
 val thirdPost = firstPost.copy(id = 4)
 
 fun main() {
-    WallService.add(firstPost)
+    val wallService = WallService()
+    wallService.add(firstPost)
     println(firstPost)
 
-    var result = WallService.update(secondPost)
+    var result = wallService.update(secondPost)
     println(result)
 
-    result = WallService.update(thirdPost)
+    result = wallService.update(thirdPost)
     println(result)
 }
