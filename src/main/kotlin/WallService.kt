@@ -4,7 +4,6 @@ class WallService {
     fun add(post: Post): Post {
         val newId = if (posts.isEmpty()) 0 else posts.last().id
         posts += post.copy(id = newId)
-        post.id = posts.indexOf(post)
         return posts.last()
     }
 
