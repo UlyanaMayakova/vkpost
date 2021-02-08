@@ -23,5 +23,6 @@ data class Post(
     val markedAsAds: Boolean = false,
     val isFavourite: Boolean = false,
     val donut: Donut,
-    val postponedId: Int? = null
+    val postponedId: Int? = null,
+    val attachment: Array<Attachment> = emptyArray()
 )
