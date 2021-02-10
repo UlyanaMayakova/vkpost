@@ -7,4 +7,4 @@ data class Note (
     val comments: Int,
     val readComments: Int? = null,
     val viewUrl: String
-) : Attachment(type = "note")
+)

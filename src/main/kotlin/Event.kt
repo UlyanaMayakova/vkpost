@@ -7,4 +7,4 @@ data class Event (
     val text: String,
     val buttonText: String,
     val friends: IntArray
-) : Attachment(type = "event")
+)

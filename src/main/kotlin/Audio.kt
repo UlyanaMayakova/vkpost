@@ -11,4 +11,4 @@ data class Audio (
     val date: Int,
     val noSearch: Boolean,
     val isHq: Boolean
-) : Attachment(type = "audio")
+)

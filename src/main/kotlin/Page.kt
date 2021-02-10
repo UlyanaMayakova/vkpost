@@ -16,4 +16,4 @@ data class Page (
     val source: String? = null,
     val html: String? = null,
     val viewUrl: String
-) : Attachment(type = "page")
+)
