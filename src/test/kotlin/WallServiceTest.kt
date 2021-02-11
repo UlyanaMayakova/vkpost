@@ -5,6 +5,76 @@ import org.junit.Assert.*
 class WallServiceTest {
 
     @Test
+    fun createCommentWorking() {
+        val service = WallService()
+
+        val firstPost = Post(
+            id = 0,
+            ownerId = 123,
+            fromId = 321,
+            date = 1611307716,
+            text = "Это первая запись",
+            comments = Comments(count = 1, canClose = false, canOpen = false),
+            copyright = Copyright(id = 234, "link.com", "That Group", "post"),
+            likes = Likes(count = 12, userLike = false, canLike = true),
+            reposts = Reposts(count = 3),
+            views = Views(count = 100),
+            postType = PostType.POST,
+            canPin = false,
+            canDelete = false,
+            canEdit = false,
+            isFavourite = true,
+            donut = Donut(isDonut = true, paidDuration = 1234567890, editMode = EditMode.DURATION))
+
+        val newComment = Comment(
+            id = 123,
+            ownerId = 987,
+            fromId = 984,
+            postId = 0,
+            date = 123456789,
+            text = "Cool post"
+        )
+
+        service.add(firstPost)
+        service.createComment(newComment)
+    }
+
+    @Test (expected = PostNotFoundException::class)
+    fun createCommentThrowing() {
+        val service = WallService()
+
+        val firstPost = Post(
+            id = 0,
+            ownerId = 123,
+            fromId = 321,
+            date = 1611307716,
+            text = "Это первая запись",
+            comments = Comments(count = 1, canClose = false, canOpen = false),
+            copyright = Copyright(id = 234, "link.com", "That Group", "post"),
+            likes = Likes(count = 12, userLike = false, canLike = true),
+            reposts = Reposts(count = 3),
+            views = Views(count = 100),
+            postType = PostType.POST,
+            canPin = false,
+            canDelete = false,
+            canEdit = false,
+            isFavourite = true,
+            donut = Donut(isDonut = true, paidDuration = 1234567890, editMode = EditMode.DURATION))
+
+        val newComment = Comment(
+            id = 123,
+            ownerId = 987,
+            fromId = 984,
+            postId = 2,
+            date = 123456789,
+            text = "Cool post"
+        )
+
+        service.add(firstPost)
+        service.createComment(newComment)
+    }
+
+    @Test
     fun add() {
         val service = WallService()
 
