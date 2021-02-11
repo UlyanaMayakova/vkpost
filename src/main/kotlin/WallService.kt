@@ -1,5 +1,6 @@
 class WallService {
     private var posts = emptyArray<Post>()
+    private var comments = emptyArray<Comment>()
 
     fun add(post: Post): Post {
         val newId = if (posts.isEmpty()) 0 else posts.last().id
@@ -17,5 +18,13 @@ class WallService {
             }
         }
         return false
+    }
+
+    fun createComment(comment: Comment) {
+        for (post in posts) {
+            if (comment.postId == post.id) {
+                comments += comment
+            } else throw PostNotFoundException("Post is not found!")
+        }
     }
 }
