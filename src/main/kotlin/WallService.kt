@@ -21,10 +21,12 @@ class WallService {
     }
 
     fun createComment(comment: Comment) {
-        for (post in posts) {
-            if (comment.postId == post.id) {
+        posts.forEach {
+            if (comment.postId == it.id) {
                 comments += comment
-            } else throw PostNotFoundException("Post is not found!")
+            }
         }
+
+        if (comments.isEmpty()) throw PostNotFoundException("Post is not found!")
     }
 }

@@ -18,7 +18,7 @@ val firstPost = Post(
 )
 
 val secondPost = Post(
-    id = 0,
+    id = 1,
     ownerId = 123456,
     fromId = 654321,
     date = 16113077165689,
@@ -41,7 +41,7 @@ val newComment = Comment(
     id = 123,
     ownerId = 987,
     fromId = 984,
-    postId = 2,
+    postId = 4,
     date = 123456789,
     text = "Cool post"
 )
@@ -49,6 +49,9 @@ val newComment = Comment(
 fun main() {
     val wallService = WallService()
     wallService.add(firstPost)
+    wallService.add(secondPost)
+    wallService.add(thirdPost)
+
     println(firstPost)
 
     var result = wallService.update(secondPost)
