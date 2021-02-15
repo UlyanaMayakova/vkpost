@@ -1,3 +1,5 @@
+import jdk.nashorn.internal.objects.NativeArray.forEach
+
 val firstPost = Post(
     id = 0,
     ownerId = 123,
@@ -41,7 +43,7 @@ val newComment = Comment(
     id = 123,
     ownerId = 987,
     fromId = 984,
-    postId = 4,
+    postId = 1,
     date = 123456789,
     text = "Cool post"
 )
@@ -52,7 +54,9 @@ fun main() {
     wallService.add(secondPost)
     wallService.add(thirdPost)
 
-    println(firstPost)
+    wallService.posts.forEach {
+        println(it)
+    }
 
     var result = wallService.update(secondPost)
     println(result)
@@ -60,5 +64,5 @@ fun main() {
     result = wallService.update(thirdPost)
     println(result)
 
-    wallService.createComment(newComment)
+      wallService.createComment(newComment)
 }
